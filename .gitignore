@@ -33,3 +33,6 @@ htmlcov
 
 # No staticfiles
 staticfiles
+
+# Heroku stuff
+heroku.sh

@@ -1,0 +1,10 @@
+heroku config:set SECRET_KEY= --remote $1 &&
+heroku config:set DJANGO_SETTINGS_MODULE=gtasker.settings.staging --remote $1 &&
+heroku config:set GOOGLEAPI_CLIENT_ID= --remote $1&&
+heroku config:set GOOGLEAPI_CLIENT_SECRET= --remote $1&&
+heroku config:set GOOGLEAPI_REDIRECT_URL= --remote $1 &&
+heroku config:set PYTHONPATH=$PYTHONPATH:./gasker/gtasker/ --remote $1 &&
+heroku config:set ADMIN_USER= --remote $1 &&
+heroku run gtasker/manage.py collectstatic --noinput --remote $1 &&
+heroku run gtasker/manage.py syncdb --remote $1 &&
+heroku run gtasker/manage.py migrate --remote $1
