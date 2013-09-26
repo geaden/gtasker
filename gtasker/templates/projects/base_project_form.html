@@ -1,0 +1,24 @@
+{% load i18n %}
+{% if form.non_field_errors %}
+<div class="alert alert-danger alert-dismissable col-lg-offset-2">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Error!</strong>
+    {% for non_field_error in form.non_field_errors %}
+        {{ non_field_error }}
+    {% endfor %}
+</div>
+{% endif %}
+{% include 'snippets/alert.html' %}
+<form id="project_form" class="form-horizontal" id="project_from" method="POST" action="{% url 'projects:create' %}" role="form">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group {% if field.errors %}has-error{% endif %}">
+        <div class="col-lg-10">
+            {{ field }}
+        </div>
+        {% if field.errors %}<span class="help-block col-lg-10"> {% for error in field.errors %}
+            {{ error }}
+        {% endfor %}</span>{% endif %}
+    </div>
+    {% endfor %}
+</form>

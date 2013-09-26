@@ -1,0 +1,57 @@
+{% extends 'tasker.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'Projects' %}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-10" id="projects_list">
+            <h1>{% trans 'Projects' %}</h1>
+            <h2><a href="#" id="add_project" data-toggle="modal" title="{% trans 'Add project' %}">
+                <span class="glyphicon glyphicon-plus-sign"
+            ></span></a></h2>
+           <table class="table table-hover" id="projects_list_table">
+                <thead>
+                    <tr>
+                        {% blocktrans %}
+                        <th></th>
+                        <th>Name</th>
+                        <th>Notes</th>
+                        <th>Date range</th>
+                        {% endblocktrans %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in project_list %}
+                        <tr>
+                            <td style="background-color: {{ project.get_color_display }}"></td>
+                            <td><a href="#project_details_modal" class="project_detail_link" onclick="loadProjectDetails(this)" data-value="{{ project.pk }}">{{ project.name }}</a></td>
+                            <td>{{ project.notes }}</td>
+                            <td>{% if project.start_date %}
+                                {{ project.start_date|date:"d.m.Y" }} &ndash; {{ project.finish_date|date:"d.m.Y"|default:"Present" }}
+                                {% else %}
+                                {% trans 'No date ranges' %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="danger">{% trans 'No projects yet' %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% url 'projects:main' as obj_url %}
+        {% include 'snippets/paginate.html' %}
+        </div>
+        <div class="col-lg-4" id="project_details" style="display: none;">
+           {% include 'modals/project_details_modal.html' %}
+        </div>
+        <div class="col-lg-2" id="task_details" style="display: none;">
+
+        </div>
+    </div>
+    {% include 'modals/project_modal.html' %}
+    {% block extra_js %}
+        {{ form.media }}
+    {% endblock %}
+{% endblock %}

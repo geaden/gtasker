@@ -1,0 +1,13 @@
+<form id="task_form" style="display: none;" class="form-horizontal" id="task_from" method="POST" action="{% url 'tasks:create' %}" role="form">
+    {% csrf_token %}
+    {% for field in task_form %}
+    <div class="form-group {% if field.errors %}has-error{% endif %}">
+        <div class="col-lg-10">
+            {{ field }}
+        </div>
+        {% if field.errors %}<span class="help-block col-lg-10"> {% for error in field.errors %}
+            {{ error }}
+        {% endfor %}</span>{% endif %}
+    </div>
+    {% endfor %}
+</form>

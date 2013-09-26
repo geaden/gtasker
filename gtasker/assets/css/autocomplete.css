@@ -1,0 +1,23 @@
+.autocomplete {
+    min-width: 350px;
+}
+
+img.item {
+    width: 45px;
+    float: left;
+    padding: 2px;
+    margin-right: 10px;
+}
+
+.follower {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.panel-body.follower {
+    margin: 0;
+}
+
+.follower > dl {
+    margin: 0px;
+}

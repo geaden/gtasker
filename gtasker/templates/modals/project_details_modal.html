@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load static %}
+<div id="project_details_modal" class="well well-large" style="margin-left: 350;">
+    <button type="button" data-toogle="tooltip" title="Remove follower" class="close" onclick="closeProjectDetails()">×</button>
+    <div class="project_details_header"></div>
+    <div class="project_details_modal_body">
+        {% include 'tasks/task_form.html' %}
+        <ul id="tasks_list" class="list-unstyled"></ul>
+    </div>
+</div>
