@@ -24,6 +24,10 @@ urlpatterns = patterns('',
                               app_name='profiles')),
     url('^tasks/', include('apps.tasks.urls',
                            namespace='tasks',
-                           app_name='tasks'))
+                           app_name='tasks')),
+
+    url('^sms/', include('apps.sms.urls',
+                         namespace='sms',
+                         app_name='sms')),
 )
 

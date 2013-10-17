@@ -174,6 +174,7 @@ INSTALLED_APPS = (
     'apps.profiles',
     'apps.projects',
     'apps.tasks',
+    'apps.sms',
 )
 
 AUTHENTICATION_BACKENDS = (
